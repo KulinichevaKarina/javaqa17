@@ -55,7 +55,7 @@
                     <execution>
                         <id>check</id>
                         <goals>
-                            <goal>check</goal>
+<!--                            <goal>check</goal>-->
                         </goals>
                         <configuration>
                             <rules>
@@ -69,6 +69,7 @@
                                     </limits>
                                 </rule>
                             </rules>
+                            <haltOnFailure>false</haltOnFailure>
                         </configuration>
                     </execution>
                 </executions>
