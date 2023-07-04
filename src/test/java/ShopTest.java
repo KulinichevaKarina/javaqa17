@@ -40,6 +40,7 @@ public class ShopTest {
 
         Assertions.assertEquals(searchItem1, repository.findById(6));
     }
+
     @Test
     public void remoteById() {
         Product searchItem = new Product(5, "картошка", 60);
@@ -51,7 +52,7 @@ public class ShopTest {
 
         repository.removeById(7);
 
-        Product[] expected = {searchItem,searchItem1};
+        Product[] expected = {searchItem, searchItem1};
         Product[] actual = repository.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -60,9 +61,10 @@ public class ShopTest {
             repository.removeById(8);
         });
     }
+
     @Test
     public void shouldGetAndSetProduct() {
-        Product product = new Product(1,"мороженое", 100);
+        Product product = new Product(1, "мороженое", 100);
 
         product.setPrice(200);
         product.setTitle("пирог");
@@ -72,16 +74,17 @@ public class ShopTest {
         Assertions.assertEquals(200, product.getPrice());
 
     }
+
     @Test
     public void shouldAddProductById() {
-        repository.add(new Product(11,"сок",105));
-        repository.add(new Product(12,"лимон",90));
-        repository.add(new Product(13,"печенье",150));
+        repository.add(new Product(11, "сок", 105));
+        repository.add(new Product(12, "лимон", 90));
+        repository.add(new Product(13, "печенье", 150));
 
-        Assertions.assertEquals(3,repository.findAll().length);
+        Assertions.assertEquals(3, repository.findAll().length);
 
         Assertions.assertThrows(AlreadyExistsException.class, () -> {
-            repository.addProductById(12);
+            repository.add(new Product(12, "лимон", 90));
         });
     }
 

@@ -1,7 +1,5 @@
 package org.example;
 
-import java.nio.file.FileAlreadyExistsException;
-
 public class ShopRepository {
     private Product[] products = new Product[0];
 
@@ -15,19 +13,11 @@ public class ShopRepository {
     }
 
     public void add(Product product) {
-        products = addToArray(products, product);
-    }
-
-    public void addProductById(int productId) {
-        int indexId = 0;
-        Product[] overlap = new Product[products.length + 1];
-        for (Product product : products) {
-            if (productId != product.getId()) {
-                overlap[indexId] = product;
-                indexId++;
-            }
-        }   products = overlap;
-        throw new AlreadyExistsException("Element with id: " + productId + " not found");
+        if (findById(product.getId()) == null) {
+            products = addToArray(products, product);
+            return;
+        }
+        throw new AlreadyExistsException("Element with id: " + product.getId() + " not found");
     }
 
     public Product[] findAll() {
